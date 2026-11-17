@@ -23,18 +23,22 @@ dialog{border:0;color:var(--ink);background:#101612;max-width:none;max-height:no
 .drawing-body .image-stage img,.viewer-white img{filter:drop-shadow(2px 8px 7px #0004)}
 .viewer-area.viewer-white{background:var(--bg)}
 @media(max-width:600px){.option-controls{padding:0 18px 12px}.option-controls .tabs{width:100%;justify-content:center}.option-controls .tabs button{flex:1;padding:0 10px}#options .caption{padding:10px 18px}.drawing-body .image-stage img{filter:drop-shadow(1px 4px 4px #0004)}}
+
+.nav{gap:24px}
+@media(min-width:601px) and (max-width:1050px){.brand small{display:none}.header{gap:16px}.nav{gap:16px}.brand-mark{display:none}}
+@media(max-width:600px){.nav{overflow-x:auto;justify-content:flex-start;gap:22px;width:100%;scrollbar-width:thin}.nav button{flex:0 0 auto;white-space:nowrap}}
 </style>
 </head>
 <body>
 <div class="app">
  <header class="header">
   <button class="brand" data-page="overview" aria-label="Harmony House overview"><span class="brand-mark">H</span><span><span class="brand-name">Harmony House</span><small>Heck Residence · Harmony, Florida</small></span></button>
-  <nav class="nav" aria-label="Presentation sections"><button data-page="overview" aria-current="page">Overview</button><button data-page="options">Window options</button><button data-page="panoramas">360° views</button><button data-page="elevations">Elevations</button></nav>
+  <nav class="nav" aria-label="Presentation sections"><button data-page="overview" aria-current="page">Overview</button><button data-page="options">Window options</button><button data-page="panoramas">360° views</button><button data-page="plans">Floor Plan</button><button data-page="elevations">Elevations</button><button data-page="existing">Existing</button></nav>
  </header>
  <main class="main">
   <section id="overview" class="page hero" aria-label="Project overview">
    <img id="hero-image" alt="Harmony House framed by mature trees and lush front garden planting">
-   <div class="hero-copy"><p class="eyebrow">A residential addition</p><h1 class="serif">A home in<br>the garden.</h1><p>A closer look at Harmony House, its new addition, and three expressions for the garden-facing windows.</p><div class="hero-links"><button class="text-link" data-page="options">Explore the options <span>↗</span></button><button class="text-link" data-page="panoramas">Look around <span>↗</span></button></div></div>
+   <div class="hero-copy"><p class="eyebrow">A residential addition</p><h1 class="serif">A home in<br>the garden.</h1><p>A closer look at Harmony House, its new addition, and three expressions for the garden-facing windows.</p></div>
    <button id="scene-expand" class="hero-full">View full image ↗</button>
   </section>
   <section id="options" class="page gallery" aria-label="Addition window options" hidden>
@@ -50,8 +54,17 @@ dialog{border:0;color:var(--ink);background:#101612;max-width:none;max-height:no
    <div class="caption"><div><p id="pano-label" class="eyebrow">360° panorama / 01</p><h2 id="pano-title" class="serif"></h2><p id="pano-description"></p></div><div class="tools"><button id="pano-out" class="square" aria-label="Zoom out of panorama">−</button><button id="pano-in" class="square" aria-label="Zoom into panorama">+</button><button id="pano-rotate" aria-pressed="false">Auto-rotate</button></div></div>
   </section>
   <section id="elevations" class="page drawing" aria-label="Building elevations" hidden>
-   <aside class="drawing-aside"><span class="eyebrow">The architecture</span><h2 class="serif">A view from<br>every side.</h2><p>Color elevations of the house and proposed addition.</p><div id="drawing-list" class="drawing-list" role="group" aria-label="Choose elevation"></div><p class="drawing-note">Drawing set: A200 · 05 November 2026.<br>Elevations show Option A. On-screen views resize to fit; use the source drawing for print scale.</p></aside>
+   <aside class="drawing-aside"><span class="eyebrow">The architecture</span><h2 class="serif">A view from<br>every side.</h2><p>Color elevations of the house and proposed addition.</p><div id="drawing-list" class="drawing-list" role="group" aria-label="Choose elevation"></div><p class="drawing-note">Drawing set: A200 · 17 November 2026.<br>Elevations show Option A. On-screen views resize to fit; use the source drawing for print scale.</p></aside>
    <div class="drawing-body"><div class="image-stage"><button id="drawing-expand" aria-label="Enlarge elevation"><img id="drawing-image" alt=""></button></div><div class="drawing-caption"><div><h3 id="drawing-title"></h3><p>Black linework · Actual finish colors · Option A</p></div><button id="drawing-zoom" class="text-link">Enlarge <span>↗</span></button></div></div>
+  </section>
+
+  <section id="plans" class="page drawing" aria-label="Floor plans and site drawings" hidden>
+   <aside class="drawing-aside"><span class="eyebrow">The plans</span><h2 class="serif">From neighborhood<br>to home.</h2><p>The aerial, site, Level 1 and roof plans.</p><div id="plan-list" class="drawing-list" role="group" aria-label="Choose plan"></div><p class="drawing-note">Updated 17 November 2026.<br>On-screen views resize to fit. Not for construction.</p></aside>
+   <div class="drawing-body"><div class="image-stage"><button id="plan-expand" aria-label="Enlarge plan"><img id="plan-image" alt=""></button></div><div class="drawing-caption"><div><h3 id="plan-title"></h3><p>HOA design review</p></div><button id="plan-zoom" class="text-link">Enlarge <span>↗</span></button></div></div>
+  </section>
+  <section id="existing" class="page drawing" aria-label="Existing condition" hidden>
+   <aside class="drawing-aside"><span class="eyebrow">Existing</span><h2 class="serif">The existing<br>home.</h2><p>County reference photograph.</p></aside>
+   <div class="drawing-body"><div class="image-stage"><button id="existing-expand" aria-label="Enlarge existing condition photo"><img id="existing-image" src="existing-county.jpg" alt="County photograph of the existing Harmony House"></button></div><div class="drawing-caption"><h3>Existing front elevation</h3><button id="existing-zoom" class="text-link">Enlarge <span>↗</span></button></div></div>
   </section>
  </main>
  <footer class="footer"><span>Heck Residence<span class="footer-address"> / 3304 Primrose Willow Drive</span></span><span id="footer-section">Harmony, Florida</span></footer>
@@ -66,7 +79,7 @@ const $=id=>document.getElementById(id), clamp=(v,a,b)=>Math.max(a,Math.min(b,v)
 let mode='overview', optionIndex=0, comparing=false, drawingIndex=0;
 const drawings=MEDIA.elevations;
 function announce(s){$('announce').textContent=s}
-function setMode(next){if(!['overview','options','panoramas','elevations'].includes(next))next='overview';mode=next;document.querySelectorAll('.page').forEach(e=>e.hidden=e.id!==mode);document.querySelectorAll('.nav [data-page]').forEach(b=>{if(b.dataset.page===mode)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('footer-section').textContent={overview:'Harmony, Florida',options:'Window studies / A · B · C',panoramas:'Two viewpoints / Two locations',elevations:'Proposed addition / Elevations'}[mode];if(mode==='panoramas')PANO.start();else PANO.stop();history.replaceState(null,'','#'+mode);announce(document.querySelector('.nav [data-page="'+mode+'"]').textContent)}
+function setMode(next){if(!['overview','options','panoramas','plans','elevations','existing'].includes(next))next='overview';mode=next;document.querySelectorAll('.page').forEach(e=>e.hidden=e.id!==mode);document.querySelectorAll('.nav [data-page]').forEach(b=>{if(b.dataset.page===mode)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});$('footer-section').textContent={overview:'Harmony, Florida',options:'Window studies / A · B · C',panoramas:'Two viewpoints / Two locations',elevations:'Proposed addition / Elevations',plans:'HOA design review / Plans',existing:'Existing condition / County photograph'}[mode];if(mode==='panoramas')PANO.start();else PANO.stop();history.replaceState(null,'','#'+mode);announce(document.querySelector('.nav [data-page="'+mode+'"]').textContent)}
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>setMode(b.dataset.page));
 $('hero-image').src=MEDIA.scene;
 function showOption(i){optionIndex=(i+3)%3;comparing=false;renderOption()}
@@ -102,6 +115,14 @@ const PANO=(()=>{
  return{start,stop:()=>{pause();pts.clear();drag=null},pause,draw,state:()=>({ready,loading,selected,loaded,yaw,pitch,fov,rotating})};
 })();
 window.addEventListener('resize',()=>{if($('viewer').open)paintZoom()});renderOption();showDrawing(2);setMode(location.hash.slice(1)||'overview');
+
+const plans=[{title:'Neighborhood aerial',image:'plan-a090.png'},{title:'Proposed site plan',image:'plan-a100.png'},{title:'Level 1 plan',image:'plan-a101.png'},{title:'Roof plan',image:'plan-a102.png'}];
+let planIndex=0;
+function showPlan(i){planIndex=i;const p=plans[i];$('plan-image').src=p.image;$('plan-image').alt=p.title;$('plan-title').textContent=p.title;[...$('plan-list').children].forEach((b,k)=>b.setAttribute('aria-pressed',String(k===i)))}
+plans.forEach((p,i)=>{const b=document.createElement('button');b.textContent=p.title;b.onclick=()=>showPlan(i);$('plan-list').append(b)});
+$('plan-expand').onclick=$('plan-zoom').onclick=()=>openImage(plans[planIndex].image,plans[planIndex].title,true);
+$('existing-expand').onclick=$('existing-zoom').onclick=()=>openImage('existing-county.jpg','Existing front elevation');
+showPlan(0);
 </script>
 </body>
 </html>
